@@ -1,0 +1,4 @@
+
+class InvalidReferenceCount(Exception):
+    pass
+
