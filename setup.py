@@ -9,14 +9,14 @@ _INSTALL_REQUIERS = [
     'logbook'
     ]
 
-setup(name="reference_counter",
+setup(name="reference-counter",
       classifiers = [
           "Programming Language :: Python :: 2.6",
           "Programming Language :: Python :: 2.7",
           "Programming Language :: Python :: 3.3",
           "Programming Language :: Python :: 3.4",
           ],
-      description="Signaling and hooking library",
+      description="Reference counter implementation in python",
       license="BSD3",
       author="Ayala Shachar",
       author_email="shachar.ayala@gmail.com",
