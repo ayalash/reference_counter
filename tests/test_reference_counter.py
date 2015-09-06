@@ -22,6 +22,14 @@ def test_depend_on_counter(primary_counter, secondary_counter):
     assert primary_counter.get_reference_count() == 1
     assert secondary_counter.get_reference_count() == 1
 
+    primary_counter.add_reference()
+    assert primary_counter.get_reference_count() == 2
+    assert secondary_counter.get_reference_count() == 1
+
+    primary_counter.remove_reference()
+    assert primary_counter.get_reference_count() == 1
+    assert secondary_counter.get_reference_count() == 1
+
     primary_counter.remove_reference()
     assert primary_counter.get_reference_count() == 0
     assert secondary_counter.get_reference_count() == 0

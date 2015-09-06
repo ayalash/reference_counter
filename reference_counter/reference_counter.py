@@ -20,8 +20,9 @@ class ReferenceCounter(object):
 
     def add_reference(self):
         self._reference += 1
-        for dep in self._depends_on:
-            dep.add_reference()
+        if self._reference == 1:
+            for dep in self._depends_on:
+                dep.add_reference()
 
     def depend_on_counter(self, counter):
         if self._reference > 0:
