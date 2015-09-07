@@ -50,4 +50,4 @@ def test_mixing_zero_refcount_callbacks_with_depend_on_counter(primary_counter, 
     primary_counter.add_reference()
     assert not callbacks.was_called()
     primary_counter.remove_reference()
-    callbacks.assert_expected(secondary_counter, primary_counter)
+    callbacks.assert_expected(primary_counter, secondary_counter)
