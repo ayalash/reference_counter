@@ -12,8 +12,9 @@ def test_get_reference_counter(ref_count):
 
 def test_removing_reference_to_zero_counter(ref_count):
     assert ref_count.get_reference_count() == 0
-    with pytest.raises(InvalidReferenceCount):
+    with pytest.raises(InvalidReferenceCount) as caught:
         ref_count.remove_reference()
+    assert ref_count is caught.value.args[0]
     assert ref_count.get_reference_count() == 0
 
 

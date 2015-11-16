@@ -31,7 +31,7 @@ class ReferenceCounter(object):
 
     def remove_reference(self):
         if self._reference <= 0:
-            raise InvalidReferenceCount()
+            raise InvalidReferenceCount(self)
 
         self._reference -= 1
         if self._reference == 0:
