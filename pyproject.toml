@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling>=0.25.1", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "reference-counter"
+description = "Reference counter implementation in python"
+readme = "README.md"
+requires-python = ">=3.7"
+license = { text = "BSD 3-Clause License" }
+
+classifiers = [
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = ["logbook"]
+
+dynamic = ["version"]
+
+authors = [{ name = "Ayala Shachar", email = "shachar.ayala@gmail.com" }]
+
+[project.urls]
+"GitHub" = "https://github.com/ayalash/reference_counter"
+
+
+[project.scripts]
+slash = "slash.frontend.main:main_entry_point"
+
+[project.optional-dependencies]
+testing = ["munch", "pytest"]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.pytest]
+testpaths = "tests"
+timeout_method = "signal"
+addopts = "-ra -W error::DeprecationWarning"
