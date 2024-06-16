@@ -1,20 +1,14 @@
 default: test
 
 test: env
-	.env/bin/py.test tests
+	.venv/bin/pytest tests
 
-.PHONY: doc
-doc: env
-	.env/bin/python setup.py build_sphinx -a -E
+env: .venv/.up-to-date
 
-
-env: .env/.up-to-date
-
-
-.env/.up-to-date: setup.py Makefile test_requirements.txt doc_requirements.txt
-	virtualenv .env
-	.env/bin/pip install -e .
-	.env/bin/pip install -r test_requirements.txt
-	.env/bin/pip install -r doc_requirements.txt
+.venv/.up-to-date: setup.py Makefile test_requirements.txt doc_requirements.txt
+	python -m venv .venv
+	.venv/bin/pip install -e .
+	.venv/bin/pip install -r test_requirements.txt
+	.venv/bin/pip install -r doc_requirements.txt
 	touch $@
 
