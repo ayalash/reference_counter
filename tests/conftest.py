@@ -11,11 +11,14 @@ def redirect_logs(request):
     request.addfinalizer(handler.pop_application)
 
 
-@pytest.fixture
-def ref_count(request):
+def _get_ref_counter():
     counter = ReferenceCounter()
     assert counter.get_reference_count() == 0
     return counter
+
+@pytest.fixture
+def ref_count(request):
+    return _get_ref_counter()
 
 
 @pytest.fixture
@@ -24,8 +27,8 @@ def primary_counter(ref_count):
 
 
 @pytest.fixture
-def secondary_counter(request, primary_counter):
-    deps = ref_count(request)
+def secondary_counter(request, primary_counter, ref_count):
+    deps = _get_ref_counter()
     assert primary_counter != deps
     primary_counter.depend_on_counter(deps)
     return deps
