@@ -25,10 +25,6 @@ authors = [{ name = "Ayala Shachar", email = "shachar.ayala@gmail.com" }]
 [project.urls]
 "GitHub" = "https://github.com/ayalash/reference_counter"
 
-
-[project.scripts]
-slash = "slash.frontend.main:main_entry_point"
-
 [project.optional-dependencies]
 testing = ["munch", "pytest"]
 
