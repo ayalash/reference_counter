@@ -1,16 +1,11 @@
 default: test
 
-test: env
-	.venv/bin/pytest tests
+test:
+	uv run --extra testing pytest tests
 
-lint: env
-	.venv/bin/ruff check .
-	.venv/bin/ruff format --check .
+lint:
+	uv run --extra testing ruff check .
+	uv run --extra testing ruff format --check .
 
-env: .venv/.up-to-date
-
-.venv/.up-to-date: pyproject.toml Makefile
-	uv venv .venv
-	uv pip install -e '.[testing]'
-	touch $@
-
+env:
+	uv venv
