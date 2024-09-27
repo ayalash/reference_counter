@@ -16,6 +16,7 @@ def _get_ref_counter():
     assert counter.get_reference_count() == 0
     return counter
 
+
 @pytest.fixture
 def ref_count(request):
     return _get_ref_counter()

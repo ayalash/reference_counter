@@ -26,7 +26,7 @@ authors = [{ name = "Ayala Shachar", email = "shachar.ayala@gmail.com" }]
 "GitHub" = "https://github.com/ayalash/reference_counter"
 
 [project.optional-dependencies]
-testing = ["munch", "pytest"]
+testing = ["munch", "pytest", "ruff"]
 
 [tool.hatch.version]
 source = "vcs"
@@ -35,3 +35,12 @@ source = "vcs"
 testpaths = "tests"
 timeout_method = "signal"
 addopts = "-ra -W error::DeprecationWarning"
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 120
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]

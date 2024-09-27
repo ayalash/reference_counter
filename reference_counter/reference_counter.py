@@ -36,9 +36,9 @@ class ReferenceCounter(object):
             _logger.debug("Last reference dropped for {0!r}", self)
             thrown = None
             for callback in itertools.chain(
-                    self._zero_refcount_callbacks,
-                    (ref_count.remove_reference for ref_count in reversed(self._depends_on)),
-                    ):
+                self._zero_refcount_callbacks,
+                (ref_count.remove_reference for ref_count in reversed(self._depends_on)),
+            ):
                 try:
                     callback()
                 except BaseException:
