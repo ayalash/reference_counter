@@ -1,8 +1,6 @@
 import sys
-import logbook
 import itertools
-
-from ._compat import reraise
+import logbook
 from .exceptions import InvalidReferenceCount
 
 _logger = logbook.Logger(__name__)
@@ -48,7 +46,8 @@ class ReferenceCounter(object):
                     if thrown is None:
                         thrown = sys.exc_info()
             if thrown is not None:
-                reraise(*thrown)
+                _, exc, _ = thrown
+                raise exc
 
     def get_reference_count(self):
         return self._reference
